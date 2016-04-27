@@ -1,0 +1,108 @@
+<div ng-controller="a1Ctrl">
+    <div class="row profile" ng-if="!status">
+        <div class="col-lg-6 col-lg-offset-3">
+            <form class="form-horizontal" method="POST" role="form">
+                <div class="form-group">
+                    <legend>
+                        Phiếu làm đề thi
+                    </legend>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-2">
+                        Họ và tên:
+                    </div>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="fullname" placeholder="Họ và tên" type="text" required="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary" ng-click="startExamp(fullname)" type="submit">
+                            <i class="fa fa-sign-in">
+                            </i>
+                            Vào thi
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row examp-detail" ng-if="status == 'isStarted'">
+        <div class="col-lg-9 examp-content">
+            <div class="row question-no">
+                <span ng-if="current">
+                    Câu hỏi số {{current + 1}}
+                </span>
+                <span ng-if="!current">
+                    Hãy chọn câu hỏi
+                </span>
+            </div>
+            <div class="row question-content text-center">
+                <p>
+                    {{questionItem.content}}
+                </p>
+                <img alt="" src="{{questionItem.img}}">
+                </img>
+            </div>
+            <div class="row list-answer" ng-repeat="ans in questionItem.ans">
+                <div class="col-lg-2 ans-title" ng-click="chooseAns(questionItem._id, ans._id)">
+                    Đáp án {{ $index + 1 }}
+                </div>
+                <div class="col-lg-10 ans-content">
+                    {{ans.content}}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 examp-list-question">
+            <div class="col-lg-12 time-examp">
+                <i class="fa fa-clock-o">
+                </i>
+                15 : 00
+            </div>
+            <div class="col-lg-12 examp-toolbar">
+                <a class="pull-left" href="" ng-click="endExamp()">
+                    <i class="fa fa-check-square-o">
+                    </i>
+                    Kết thúc
+                </a>
+                <a class="pull-right" href="" ng-click="nextQuestion()">
+                    Câu tiếp theo
+                    <i class="fa fa-step-forward">
+                    </i>
+                </a>
+            </div>
+            <div active="{{$index}}" class="col-lg-6 examp-item" ng-click="getQuestion(quest._id, $index)" ng-repeat="quest in listQuestion">
+                Câu {{$index + 1}}
+            </div>
+        </div>
+    </div>
+    <div class="row end-examp" ng-if="status == 'isFinished'">
+    	<h3 class="text-center">Bài thi kết thúc</h3>
+    	<div class="col-lg-4 col-lg-offset-4">
+    		<div class="table-responsive">
+    			<table class="table table-hover table-bordered">
+    				<tbody>
+    					<tr>
+    						<th>Họ và tên thí sinh</th>
+    						<th>Tổng số câu đã làm</th>
+    						<th>Số câu làm đúng</th>
+    						<th>Kết quả</th>
+    					</tr>
+    					<tr>
+    						<td>{{''}}</td>
+    						<td>{{result.total}}</td>
+    						<td>{{result.score}}</td>
+    						<td ng-if="result.pass == true">Đạt</td>
+    						<td ng-if="result.pass == false">Không đạt</td>
+    					</tr>
+    				</tbody>
+    			</table>
+    		</div>
+    		<center>
+    			<a ng-click="clearExamp()" class="btn btn-success" style="margin-top: 5px;"><i class="fa fa-refresh"></i> Làm lại</a>
+    		</center>
+    	</div>
+    </div>
+</div>
+
+

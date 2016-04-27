@@ -1,0 +1,6 @@
+node_modules/
+public/plugins/
+t.js
+*.DS_Store
+npm-debug.log
+thumb.db

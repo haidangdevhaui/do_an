@@ -1,0 +1,106 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="">
+    <!-- ==========Start content=========== -->
+    <div class="col-lg-10">
+        <h2>
+            Profile
+        </h2>
+        <ol class="breadcrumb">
+            <li>
+                <a>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a>
+                    Profile
+                </a>
+            </li>
+            <li class="active">
+                <strong >
+                    Update Profile
+                </strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>
+                        Update Profile
+                    </h5>
+                </div>
+                <div class="ibox-content">
+                    <form method="POST" class="form-horizontal" action="/cpanel/member/profile/update" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                Username
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="<%= user.uid%>" name="uid">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                First Name
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="<%= user.fn%>" name="fn">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                Last Name
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="<%= user.ln%>" name="ln">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                Email
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="<%= user.mail%>" name="mail">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                Avatar
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="file" name="avatar" onchange="dis()">
+                                <script type="text/javascript">
+                                    function dis(){
+                                        $('#url_avatar').hide();
+                                    }
+                                </script>
+                            </div>
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <input type="text" class="form-control" name="url" placeholder="http://url_avatar" id="url_avatar">
+                            </div>
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <img src="<%= user.avatar %>" alt="" class="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-primary " type="submit">
+                                    <i class="fa fa-plus">
+                                    </i>
+                                    &nbsp;Update Profile
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,46 @@
+<div class="row">
+    <% for(var i in messages) { %>
+    <div class="flash">
+    <%= messages[i] %>
+    </div>
+    <% } %>
+    <div class="wrap-form">
+        <form class="m-t" role="form" method="post" action="/member/login">
+            <div class="form-group">
+                <ul class="list-unstyled">
+                    <li>
+                        <button class="btn btn-danger" type="button">
+                            Login with Google
+                            <span class="badge">
+                                <i class="fa fa-2x fa-google">
+                                </i>
+                            </span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="btn btn-info" type="button">
+                            Login with Twitter
+                            <span class="badge">
+                                <i class="fa fa-2x fa-twitter">
+                                </i>
+                            </span>
+                        </button>
+                    </li>
+                    <li>
+                        <input type="email" name="uid" class="form-control" placeholder="Username" required=""/>
+                    </li>
+                    <li>
+                        <input type="password" name="pwd" class="form-control" placeholder="Password" required=""/>
+                    </li>
+                    <a href="/member/forgot-password" class="pull-left">Forgot Password?</a>
+                    <a href="/member/register" class="pull-right">Create Account</a>
+                    <li>
+                        <button type="submit" class="btn btn-primary">
+                            Login
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>

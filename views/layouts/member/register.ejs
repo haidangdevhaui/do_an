@@ -1,0 +1,34 @@
+<div class="row">
+    <% for(var i in messages) { %>
+    <div class="flash">
+    <%= messages[i] %>
+    </div>
+    <% } %>
+    <div class="wrap-form">
+        <form class="m-t" role="form" action="/member/register" method="post">
+            <div class="form-group">
+                <ul class="list-unstyled">
+                    <li>
+                        <input type="text" placeholder="Name" id="" class="form-control"/>
+                    </li>
+                    <li>
+                        <input type="email" name="uid" class="form-control" placeholder="Username" required=""/>
+                    </li>
+                    <li>
+                        <input type="password" name="pwd" class="form-control" placeholder="Password" required=""/>
+                    </li>
+                    <li>
+                        <button type="submit" class="btn btn-primary">
+                            Sign up now
+                        </button>
+                    </li>
+                    <li>
+                        <a href="/member/login" class="btn btn-danger form-control _member-a"><i class="fa fa-sign-in"></i>
+                            Back to Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>

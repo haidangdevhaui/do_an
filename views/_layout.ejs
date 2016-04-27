@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%=title%></title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg=="
+    crossorigin="anonymous" />
+  <link href="/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+  <link href="/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+  <link href="/css/animate.css" rel="stylesheet" />
+  <link href="/css/style.css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.7/jquery.nicescroll.min.js"></script>
+
+  <script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+  <script src="/js/plugins/highcharts/highcharts.min.js"></script>
+  <script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
+
+  <!-- Flot -->
+  <!-- <script src="/js/plugins/flot/jquery.flot.js"></script>
+  <script src="/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+  <script src="/js/plugins/flot/jquery.flot.spline.js"></script>
+  <script src="/js/plugins/flot/jquery.flot.resize.js"></script>
+  <script src="/js/plugins/flot/jquery.flot.pie.js"></script>
+  <script src="/js/plugins/flot/jquery.flot.symbol.js"></script>
+  <script src="/js/plugins/flot/curvedLines.js"></script> -->
+  <script data-pace-options='{ "ajax": true }' src="/js/plugins/pace/pace.min.js"></script>
+
+  <script src="/js/plugins/dataTables/datatables.min.js"></script>
+
+  <!-- Date range use moment.js same as full calendar plugin -->
+  <script src="/js/plugins/fullcalendar/moment.min.js"></script>
+
+  <!-- Date range picker -->
+  <script src="/js/plugins/daterangepicker/daterangepicker.js"></script>
+
+
+  <!-- Sparkline -->
+  <script src="/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+
+
+  <script src="/js/adm.js"></script>
+
+</head>
+
+<body class="fixed-sidebar fixed-nav fixed-nav-basic skin-1">
+
+  <div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+      <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+          <li class="nav-header">
+            <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle profile-avt" src="<%= user.avatar %>" />
+                             </span>
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <span class="clear">
+                  <span class="block m-t-xs"> <strong class="font-bold"><%= user.uid %></strong>
+                             </span> </span>
+              </a>
+              <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                <li><a href="/cpanel/member/profile">Profile</a></li>
+                <li><a href="/cpanel/member/changepwd">Change Pwd</a></li>
+                <li><a href="/">Home Page</a></li>
+                <li class="divider"></li>
+                <li><a href="/member/logout">Logout</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="active">
+            <a href="/cpanel/dashboard"><i class="fa fa-3 fa-dashboard"></i> <span class="nav-label">Dashboard</span></a>
+          </li>
+          <li>
+            <a href="/cpanel/posts"><i class="fa fa-3 fa-file-text"></i> <span class="nav-label">Posts</span>  </a>
+          </li>
+          <!-- <li>
+            <a href="/cpanel/question"><i class="fa fa-3 fa-question-circle"></i> <span class="nav-label">Question and Answer</span>  </a>
+          </li> -->
+          <li>
+            <a href="/cpanel/examp"><i class="fa fa-3 fa-mortar-board"></i> <span class="nav-label">Examp</span>  </a>
+          </li>
+          <li>
+            <a href="/cpanel/member"><i class="fa fa-3 fa-users"></i> <span class="nav-label">Member</span>  </a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg">
+      <div class="row border-bottom">
+        <nav class="navbar navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+          <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" action="/api/short">
+              <div class="input-group">
+                <input type="text" placeholder="http://" class="form-control" name="lnk" id="lnk" />
+                <span class="input-group-btn">
+                  <button type="button" id="btn-shrink" class="btn btn-primary"><i class="fa fa-lg fa-compress"></i></button>
+                </span>
+              </div>
+            </form>
+          </div>
+          <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+              <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                <i class="fa fa-envelope"></i> <span class="label label-warning">16</span>
+              </a>
+              <ul class="dropdown-menu dropdown-messages">
+                <li>
+                  <div class="dropdown-messages-box">
+                    <a href="profile.html" class="pull-left">
+                      <img alt="image" class="img-circle" src="/img/a7.jpg">
+                    </a>
+                    <div>
+                      <small class="pull-right">46h ago</small>
+                      <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>.
+                      <br>
+                      <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
+                    </div>
+                  </div>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <div class="dropdown-messages-box">
+                    <a href="profile.html" class="pull-left">
+                      <img alt="image" class="img-circle" src="/img/a4.jpg">
+                    </a>
+                    <div>
+                      <small class="pull-right text-navy">5h ago</small>
+                      <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>.
+                      <br>
+                      <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
+                    </div>
+                  </div>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <div class="dropdown-messages-box">
+                    <a href="profile.html" class="pull-left">
+                      <img alt="image" class="img-circle" src="/img/profile.jpg">
+                    </a>
+                    <div>
+                      <small class="pull-right">23h ago</small>
+                      <strong>Monica Smith</strong> love <strong>Kim Smith</strong>.
+                      <br>
+                      <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
+                    </div>
+                  </div>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <div class="text-center link-block">
+                    <a href="mailbox.html">
+                      <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
+              </a>
+              <ul class="dropdown-menu dropdown-alerts">
+                <li>
+                  <a href="mailbox.html">
+                    <div>
+                      <i class="fa fa-envelope fa-fw"></i> You have 16 messages
+                      <span class="pull-right text-muted small">4 minutes ago</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="profile.html">
+                    <div>
+                      <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                      <span class="pull-right text-muted small">12 minutes ago</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="grid_options.html">
+                    <div>
+                      <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                      <span class="pull-right text-muted small">4 minutes ago</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <div class="text-center link-block">
+                    <a href="notifications.html">
+                      <strong>See All Alerts</strong>
+                      <i class="fa fa-angle-right"></i>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+
+            <li>
+              <a href="/member/logout">
+                <i class="fa fa-sign-out"></i> Log out
+              </a>
+            </li>
+            <li>
+              <a class="right-sidebar-toggle">
+                <i class="fa fa-tasks"></i>
+              </a>
+            </li>
+          </ul>
+
+        </nav>
+      </div>
+
+      
+      <%- body %>
+      
+
+        <div class="footer">
+          <div class="pull-right">
+            10GB of <strong>250GB</strong> Free.
+          </div>
+          <div>
+            <strong>Copyright</strong> &copy; 2016 viralnk.com
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>

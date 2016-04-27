@@ -1,0 +1,10 @@
+<div class="row examp-content" ng-controller="a1Ctrl">
+	<p class="text-center">
+		Chọn bộ đề thi
+	</p>
+	<div class="col-lg-6 col-lg-offset-3">
+		<a ng-repeat="examp in listExamp" ui-sref="examp({id: examp._id})"><div class="col-lg-6 examp-item">
+			Bộ đề {{$index + 1}}
+		</div></a>
+	</div>
+</div>

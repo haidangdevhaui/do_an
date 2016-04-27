@@ -1,0 +1,210 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-6">
+    <ol class="breadcrumb">
+      <li>
+        <a href="/cpanel/dashboard">Home</a>
+      </li>
+      <li class="active">
+        <strong>Posts</strong>
+      </li>
+    </ol>
+  </div>
+  <div class="col-lg-6">
+
+    <div class="pull-right">
+
+      <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+        <span></span> <b class="caret"></b>
+      </div>
+    </div>
+
+  </div>
+</div>
+<%if(message != ''){%>
+<div class="col-lg-12 alert-ms alert alert-<%=type_message%>" style="margin-top: 5px;">
+     <%=message%>
+  </div>
+<%}%>
+
+<div class="wrapper wrapper-content">
+
+  <div class="row">
+    <div class="col-lg-2">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <span class="label label-success pull-right">Monthly</span>
+          <h5>Views</h5>
+        </div>
+        <div class="ibox-content">
+          <h1 class="no-margins">386,200</h1>
+          <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
+          <small>Total views</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <span class="label label-info pull-right">Annual</span>
+          <h5>Orders</h5>
+        </div>
+        <div class="ibox-content">
+          <h1 class="no-margins">80,800</h1>
+          <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
+          <small>New orders</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <span class="label label-primary pull-right">Today</span>
+          <h5>Clicks</h5>
+        </div>
+        <div class="ibox-content">
+
+          <div class="row">
+            <div class="col-md-4">
+              <h1 class="no-margins">40,642</h1>
+              <div class="font-bold text-navy">44% <small>Clicks</small></div>
+            </div>
+            <div class="col-md-4">
+              <h1 class="no-margins">20,612</h1>
+              <div class="font-bold text-navy">22% <small>Unique</small></div>
+            </div>
+            <div class="col-md-4">
+              <h1 class="no-margins">10,612</h1>
+              <div class="font-bold text-navy">22% <small>Pending</small></div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Monthly income</h5>
+          <div class="ibox-tools">
+            <span class="label label-primary">Updated 12.2015</span>
+          </div>
+        </div>
+        <div class="ibox-content no-padding">
+          <div class="flot-chart m-t-lg" style="height: 55px;">
+            <div class="flot-chart-content" id="flot-chart1"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <a class="btn btn-success" href="/cpanel/posts/create"><i class="fa fa-plus"></i>Add Post</a>
+      </div>
+      <div class="col-lg-12">
+
+
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Top Posts</h5>
+            <div class="ibox-tools">
+              <a class="collapse-link">
+                <i class="fa fa-chevron-up"></i>
+              </a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-wrench"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-user">
+                <li><a href="#">Config option 1</a>
+                </li>
+                <li><a href="#">Config option 2</a>
+                </li>
+              </ul>
+              <a class="close-link">
+                <i class="fa fa-times"></i>
+              </a>
+            </div>
+          </div>
+          <div class="ibox-content">
+
+            <div class="table-responsive">
+              <table id="tbl-links" class="table table-striped table-bordered table-hover dataTables-example">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Url</th>
+                    <th>Title</th>
+                    <th>Page Title</th>
+                    <th>Description</th>
+                    <th>Content</th>
+                    <th>Tags</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+</div>
+
+<script>
+
+    $(function(){
+      
+
+
+      $('#tbl-links').DataTable({
+        "ajax": '/api/v1/post/list',
+        "columns": [{
+          "data": "img",
+          "render": function(data, type, row) {
+              return '<img src="'+data+'" class="img-item"/>';
+          }
+        }, {
+          "data": "url"
+        }, {
+          "data": "tl"
+        }, {
+          "data": "pl"
+        }, {
+          "data": "desc"
+        }, {
+          "data": "htm",
+          "render": function(data, type, row){
+            if(data.length > 200){
+              return data.substr(0,200) + '...';
+            }
+            return data;
+          }
+        }, {
+          "data": "tags"
+        }, {
+          "data": "_id",
+          "render": function(data, type, row){
+              return '<div class="btn-group" style="min-width: 45px;"><a href="/cpanel/posts/update/'+ data +'" class="btn btn-primary btn-xs" title="edit"><i class="fa fa-edit"></i></a><a href="/cpanel/posts/delete/'+ data +'" class="btn btn-danger btn-xs" title="edit"><i class="fa fa-trash-o"></i></a></div>';
+          }
+        }]
+    });
+
+  });
+
+</script>
